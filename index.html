@@ -22,11 +22,38 @@
       -->
         <!- libraries -->
         <script src="http://mohayonao.github.io/timbre.js/timbre.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <!--<<script src="js/sketch.js" type="text/javascript" language="javascript"></script>
-        script src="timbre.js"></script>-->
+        <script src="timbre.js"></script>-->
+
+
+        <button type="button"> Go</button>
+
         <script>
-        T("sin", {freq:200, mul:0.5}).play();
-        T("sin", {freq:201, mul:0.5}).play();
+var first_time = 1;
+
+          $("button").click(function(first_time) {
+            var fired_button = $(this).val();
+            console.log(fired_button);
+            var freq1 = Math.random()*600;
+            freq1 = Math.max(freq1,175);
+
+            var addfreq = Math.random()*3;
+            addfreq = Math.min(addfreq,1);
+            console.log(first_time);
+
+          //  if (first_time==1) { console.log(first_time);
+              var sin1 = T("sin", {freq:freq1, mul:0.5});
+              var sin2 = T("sin", {freq:freq1+addfreq, mul:0.5});
+
+              T("perc", {r:500}, sin1, sin2).on("ended", function() {
+                this.pause();
+              }).bang().play();
+
+          //}
+            //alert(fired_button);
+          });
+
         </script>
 
 
